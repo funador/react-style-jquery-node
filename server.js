@@ -26,7 +26,8 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'))
 })
 
+// connect the db and start the server
 mongoose.connect(process.env.DB_URL, () => {
-  app.listen(8080, () => 'listening')  
+  app.listen(process.env.PORT || 8080, () => 'listening')  
 })
 
