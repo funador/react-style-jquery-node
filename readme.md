@@ -4,23 +4,23 @@ Demonstration of React/Redux style MVC pattern using jQuery, [deployed version](
 
 # Getting Started
 
-```js
+```
 git clone https://github.com/funador/react-style-jquery-node.git
 cd react-style-jquery-node
 npm install
 touch .env
 ```
 Open the .env file in your editor and add this line and save:
-```js
+```
 DB_URL=mongodb://localhost:27017/react-style-jquery-node
 ```
 
 Fire up mongo ([How to install mongo](https://docs.mongodb.com/manual/installation/)):
-``` js
+``` 
 mongod
 ```
 Finally:
-``` js
+``` 
 npm start
 ```
 
