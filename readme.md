@@ -2,7 +2,7 @@
 
 Demonstration of React/Redux style MVC pattern using jQuery, [deployed version](https://react-style-jquery-node.herokuapp.com/)
 
-#### Getting Started
+### Getting Started
 
 ```
 git clone https://github.com/funador/react-style-jquery-node.git
@@ -26,7 +26,7 @@ npm start
 
 The app is now running at: [localhost:8080/](http://localhost:8080/)
 
-#### Caveats
+### Caveats
 - There is intentionally no error handling in this app, this is designed to demonstrate CRUD operations using a Reacty-style front end pattern
 
 
