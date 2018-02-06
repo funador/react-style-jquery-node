@@ -5,17 +5,7 @@ body {
 .container {
   background: #fff;
   margin-top: 15px;
-  height: 100%;
   padding-bottom: 25px;
-}
-
-
-.completed {
-  text-decoration: line-through;
-}
-
-.margin-top-7 {
-  margin-top: 7px;
 }
 
 .collection .row, .collection input {
@@ -32,4 +22,12 @@ body {
 
 .disabledBtn {
   color: #e0e0e0;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.margin-top-7 {
+  margin-top: 7px;
 }
