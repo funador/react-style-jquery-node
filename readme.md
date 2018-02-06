@@ -1,6 +1,6 @@
 # React Style jQuery/Node
 
-Demonstration of React/Redux style MVC pattern using jQuery, [deployed version](https://react-style-jquery-node.herokuapp.com/).  
+Demonstration of React/Redux style MVC pattern using jQuery, [deployed version](https://react-style-jquery-node.herokuapp.com/){:target="_blank"}.  
 
 # Getting Started
 
