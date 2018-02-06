@@ -1,0 +1,35 @@
+body {
+  background: #fbf7f5;
+}
+
+.container {
+  background: #fff;
+  margin-top: 15px;
+  height: 100%;
+  padding-bottom: 25px;
+}
+
+
+.completed {
+  text-decoration: line-through;
+}
+
+.margin-top-7 {
+  margin-top: 7px;
+}
+
+.collection .row, .collection input {
+  margin-bottom: 0px;
+}
+
+.collection-item input {
+  height: 2rem;
+}
+
+.collection-item .text {
+  margin: 4px 0px 5px 0px;
+}
+
+.disabledBtn {
+  color: #e0e0e0;
+}
