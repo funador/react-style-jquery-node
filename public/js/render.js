@@ -2,7 +2,7 @@ const render = (() => () => {
   $('.collection').html(store.todos.map(todo => {
     
     const text = todo.editing 
-      ? `<input class='${todo.done}' value='${todo.text}'>`
+      ? `<input value='${todo.text}'>`
       : `<div class='text ${todo.done}'>${todo.text}</div>`
 
     const editClass = todo.editing
