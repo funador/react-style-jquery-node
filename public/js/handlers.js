@@ -56,16 +56,15 @@ const handlers = (() => {
 
   const updateTextHandler = e => {
     e.preventDefault()
-    // console.log('super early', store.todos[0])
     const $target = $(e.currentTarget)
     const id = $target.data('id')
-    const hasClass = $target.hasClass('save')
+    const hasSaveClass = $target.hasClass('save')
 
-    if (e.which != 13 && !hasClass) {
+    if (e.which != 13 && !hasSaveClass) {
       return false
     }
     
-    if (!hasClass) {
+    if (!hasSaveClass) {
       store.setEditing(id)
     }
     
@@ -75,7 +74,7 @@ const handlers = (() => {
       Materialize.toast('Please add some text', 1200, 'rounded')
       return
     }
-    
+
     _updateApi({text}, id)
   }
 

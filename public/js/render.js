@@ -1,47 +1,30 @@
 const render = (() => () => {
   $('.collection').html(store.todos.map(todo => {
-    
-    const truncated = todo.text.length > 30
-      ? todo.text.slice(0, 40) + "\u2026"
-      : todo.text
+    const { editing, text, done, id } = todo
 
-    const text = todo.editing 
-      ? `<input value='${todo.text}' data-id='${todo.id}'>`
-      : `<div class='text ${todo.done}'>${truncated}</div>`
+    const todoText = editing 
+      ? `<input value='${text}' data-id='${id}'>`
+      : `<div class='text ${done}'>${text}</div>`
 
-    const editClass = todo.editing
-      ? `save`
-      : 'edit'
-
-    const disabledClass = todo.editing
-      ? `disabledBtn`
-      : ''
-
-    const deleteClass = todo.editing
-      ? ''
-      : 'delete'
-
-    const doneClass = todo.editing
-      ? ''
-      : 'done'
-
-    const editingIcon = todo.editing
-      ? 'save'
-      : 'create'
+    const editClass = editing ? `save` : 'edit'
+    const disabledClass = editing ? `disabled` : ''
+    const deleteClass = editing ? '' : 'delete'
+    const doneClass = editing ? '' : 'done'
+    const editingIcon = editing ? 'save' : 'create'
 
     return `<li class="collection-item">
               <div class='row'>
                 <div class='col s8'>
-                  ${text}
+                  ${todoText}
                 </div>
                 <div class='col s4'>
-                  <a href="#!" class="secondary-content ${deleteClass}" data-id='${todo.id}'>
+                  <a href="#!" class="secondary-content ${deleteClass}" data-id='${id}'>
                     <i class="material-icons ${disabledClass}">delete</i>
                   </a>
-                  <a href="#!" class="secondary-content ${doneClass}" data-id='${todo.id}'>
+                  <a href="#!" class="secondary-content ${doneClass}" data-id='${id}'>
                     <i class="material-icons ${disabledClass}">done</i>
                   </a>
-                  <a href="#!" class="secondary-content ${editClass}" data-id='${todo.id}'>
+                  <a href="#!" class="secondary-content ${editClass}" data-id='${id}'>
                     <i class="material-icons">${editingIcon}</i>
                   </a>
                 </div>
