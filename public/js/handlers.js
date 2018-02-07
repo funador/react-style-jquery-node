@@ -19,7 +19,7 @@ const handlers = (() => {
       .then(newTodo => {
         _toast('Todo Added')
         store.addToStore(newTodo)
-        render()    
+        render.todos()    
       })
   }
 
@@ -31,7 +31,7 @@ const handlers = (() => {
       .then(data => {
         _toast('Todo Deleted')
         store.deleteFromStore(data.id)
-        render()    
+        render.todos()    
       })
   }
 
@@ -49,7 +49,7 @@ const handlers = (() => {
     }
     
     store.setEditing(id)
-    render()
+    render.todos()
   }
 
   const _updateApi = (update, id) => {
@@ -63,7 +63,7 @@ const handlers = (() => {
         }
 
         store.updateInStore(updatedTodo)
-        render()
+        render.todos()
       })
   }
 
