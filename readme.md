@@ -19,7 +19,7 @@ In a seperate terminal window or tab fire up mongo ([How to install mongo](https
 ``` 
 mongod
 ```
-Finally at the root of the project:
+Finally in /react-style-jquery-node:
 ``` 
 npm start
 ```
