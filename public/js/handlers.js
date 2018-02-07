@@ -11,7 +11,7 @@ const handlers = (() => {
     const todo = $target.val().trim()
     $target.val('')
 
-    if(!todo) {
+    if (!todo) {
       _toast('Please add some text')
       return
     }
@@ -78,7 +78,7 @@ const handlers = (() => {
       return false
     }
 
-    if(!text) {
+    if (!text) {
       _toast('Please add some text')
       return
     }
@@ -98,7 +98,6 @@ const handlers = (() => {
     const done = $target.closest('.collection-item').find('.text').hasClass('completed') 
       ? '' 
       : 'completed'
-    console.log('triggering done render')
     _updateApi({done}, id)
   }
 
