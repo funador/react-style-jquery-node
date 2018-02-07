@@ -21,11 +21,11 @@ const render = (() => () => {
                   <a href="#!" class="secondary-content ${deleteClass}" data-id='${id}'>
                     <i class="material-icons ${disabledClass}">delete</i>
                   </a>
-                  <a href="#!" class="secondary-content ${doneClass}" data-id='${id}'>
-                    <i class="material-icons ${disabledClass}">done</i>
-                  </a>
                   <a href="#!" class="secondary-content ${editClass}" data-id='${id}'>
                     <i class="material-icons">${editingIcon}</i>
+                  </a>
+                  <a href="#!" class="secondary-content ${doneClass}" data-id='${id}'>
+                    <i class="material-icons ${disabledClass}">done</i>
                   </a>
                 </div>
               </div>

@@ -26,7 +26,7 @@ const store = (() => {
   function updateInStore(updated) {
     this.todos = this.todos.map(todo => 
                     todo.id == updated.id 
-                      ? Object.assign(todo, updated)
+                      ? Object.assign({}, todo, updated)
                       : todo
                   )
   }
