@@ -6,7 +6,6 @@ const handlers = (() => {
 
   const addHandler = e => {
     e.preventDefault()
-    
     const $target = $(e.currentTarget).find('#todo')
     const todo = $target.val().trim()
     $target.val('')
@@ -92,12 +91,12 @@ const handlers = (() => {
 
   const updateDoneHandler = e => {
     e.preventDefault()
-
     const $target = $(e.currentTarget)
     const id = $target.data('id')
     const done = $target.closest('.collection-item').find('.text').hasClass('completed') 
       ? '' 
       : 'completed'
+
     _updateApi({done}, id)
   }
 
