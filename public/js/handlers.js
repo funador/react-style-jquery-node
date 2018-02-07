@@ -25,7 +25,7 @@ const handlers = (() => {
 
   const deleteHandler = e => {
     e.preventDefault()
-    const id = $(e.currentTarget).data('id')
+    const id = $(e.currentTarget).closest('.collection-item').data('id')
 
     api.deleteTodo(id)
       .then(data => {
@@ -38,10 +38,11 @@ const handlers = (() => {
   const editTextHandler = e => {
     e.preventDefault()
     const $target = $(e.currentTarget)
-    const id = $target.data('id')
+    const $item = $target.closest('.collection-item')
+    const id = $item.data('id')
 
     if ($target.hasClass('save')) {
-      const text = $target.closest('.collection-item').find('input').val()
+      const text = $item.find('input').val()
       if (!text) {
         return 
       }  
@@ -69,9 +70,10 @@ const handlers = (() => {
   const updateTextHandler = e => {
     e.preventDefault()
     const $target = $(e.currentTarget)
-    const id = $target.data('id')
+    const $item = $target.closest('.collection-item')
     const hasSaveClass = $target.hasClass('save')
-    const text = $target.closest('.collection-item').find('input').val().trim()
+    const id = $item.data('id')
+    const text = $item.find('input').val().trim()
 
     if (e.which != 13 && !hasSaveClass) {
       return false
@@ -91,9 +93,9 @@ const handlers = (() => {
 
   const updateDoneHandler = e => {
     e.preventDefault()
-    const $target = $(e.currentTarget)
-    const id = $target.data('id')
-    const done = $target.closest('.collection-item').find('.text').hasClass('completed') 
+    const $item = $(e.currentTarget).closest('.collection-item')
+    const id = $item.data('id')
+    const done = $item.find('.text').hasClass('completed') 
       ? '' 
       : 'completed'
 
