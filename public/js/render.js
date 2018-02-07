@@ -14,10 +14,10 @@ const render = (() => () => {
 
     return `<li class="collection-item">
               <div class='row'>
-                <div class='col s8'>
+                <div class='col s7 m8'>
                   ${todoText}
                 </div>
-                <div class='col s4'>
+                <div class='col s5 m4'>
                   <a href="#!" class="secondary-content ${deleteClass}" data-id='${id}'>
                     <i class="material-icons ${disabledClass}">delete</i>
                   </a>
