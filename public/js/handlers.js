@@ -1,20 +1,24 @@
 const handlers = (() => {
   
+  const _toast = message => {
+    Materialize._toast(message, 1200, 'rounded')
+  }
+
   const addHandler = e => {
     e.preventDefault()
     
     const $target = $(e.currentTarget).find('#todo')
     const todo = $target.val().trim()
     $target.val('')
-    
+
     if(!todo) {
-      Materialize.toast('Please add some text', 1200, 'rounded')
+      _toast('Please add some text')
       return
     }
 
     api.addTodo({text: todo})
       .then(newTodo => {
-        Materialize.toast('Todo Added', 1200, 'rounded')
+        _toast('Todo Added')
         store.addToStore(newTodo)
         render()    
       })
@@ -26,7 +30,7 @@ const handlers = (() => {
 
     api.deleteTodo(id)
       .then(data => {
-        Materialize.toast('Todo Deleted', 1200, 'rounded')
+        _toast('Todo Deleted')
         store.deleteFromStore(data.id)
         render()    
       })
@@ -46,7 +50,7 @@ const handlers = (() => {
         const textCheck = updatedTodo.text != originalTodo.text
 
         if (textCheck) {
-          Materialize.toast('Todo Updated', 1200, 'rounded')  
+          _toast('Todo Updated')  
         }
 
         store.updateInStore(updatedTodo)
@@ -71,7 +75,7 @@ const handlers = (() => {
     const text = $target.closest('.collection-item').find('input').val().trim()
 
     if(!text) {
-      Materialize.toast('Please add some text', 1200, 'rounded')
+      _toast('Please add some text')
       return
     }
 
