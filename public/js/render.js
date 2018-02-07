@@ -5,10 +5,8 @@ const render = (() => () => {
       ? todo.text.slice(0, 40) + "\u2026"
       : todo.text
 
-    console.log(todo.text)
-
     const text = todo.editing 
-      ? `<input value='${todo.text}'>`
+      ? `<input value='${todo.text}' data-id='${todo.id}'>`
       : `<div class='text ${todo.done}'>${truncated}</div>`
 
     const editClass = todo.editing
@@ -44,8 +42,8 @@ const render = (() => () => {
                     <i class="material-icons ${disabledClass}">done</i>
                   </a>
                   <a href="#!" class="secondary-content ${editClass}" data-id='${todo.id}'>
-                   <i class="material-icons">${editingIcon}</i>
-                 </a>
+                    <i class="material-icons">${editingIcon}</i>
+                  </a>
                 </div>
               </div>
             </li>`

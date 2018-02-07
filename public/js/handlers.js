@@ -42,7 +42,14 @@ const handlers = (() => {
   const _updateApi = (update, id) => {
     api.updateTodo(update, id)
       .then(updatedTodo => {
-        Materialize.toast('Todo Updated', 1200, 'rounded')
+        const originalTodo = store.findById(id)
+        const textCheck = updatedTodo.text != originalTodo.text
+        const doneCheck = originalTodo.done !== updatedTodo.done
+
+        if (textCheck || doneCheck) {
+          Materialize.toast('Todo Updated', 1200, 'rounded')  
+        }
+        
         store.updateInStore(updatedTodo)
         render()
       })
@@ -50,9 +57,19 @@ const handlers = (() => {
 
   const updateTextHandler = e => {
     e.preventDefault()
-
+    // console.log('super early', store.todos[0])
     const $target = $(e.currentTarget)
     const id = $target.data('id')
+    const hasClass = $target.hasClass('save')
+
+    if (e.which != 13 && !hasClass) {
+      return false
+    }
+    
+    if (!hasClass) {
+      store.setEditing(id)
+    }
+    
     const text = $target.closest('.collection-item').find('input').val()
     _updateApi({text}, id)
   }

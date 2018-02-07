@@ -20,6 +20,10 @@ const store = (() => {
                   })
   }
 
+  function findById(id) {
+    return this.todos.find(todo => todo.id == id)
+  }
+
   function updateInStore(updated) {
     this.todos = this.todos
                   .map(todo => 
@@ -44,6 +48,7 @@ const store = (() => {
     setEditing,
     updateInStore,
     addTodosOnLoad,
+    findById,
     todos
   }
 })()
