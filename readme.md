@@ -15,7 +15,7 @@ Open the .env file in your editor, add this line and save:
 DB_URL=mongodb://localhost:27017/react-style-jquery-node
 ```
 
-Fire up mongo ([How to install mongo](https://docs.mongodb.com/manual/installation/)):
+In a seperate terminal window or tab fire up mongo ([How to install mongo](https://docs.mongodb.com/manual/installation/)):
 ``` 
 mongod
 ```
