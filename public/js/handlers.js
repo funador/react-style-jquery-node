@@ -38,7 +38,16 @@ const handlers = (() => {
 
   const editTextHandler = e => {
     e.preventDefault()
-    const id = $(e.currentTarget).data('id')
+    const $target = $(e.currentTarget)
+    const id = $target.data('id')
+
+    if ($target.hasClass('save')) {
+      const text = $target.closest('.collection-item').find('input').val()
+      if (!text) {
+        return 
+      }  
+    }
+    
     store.setEditing(id)
     render()
   }
@@ -63,22 +72,21 @@ const handlers = (() => {
     const $target = $(e.currentTarget)
     const id = $target.data('id')
     const hasSaveClass = $target.hasClass('save')
+    const text = $target.closest('.collection-item').find('input').val().trim()
 
     if (e.which != 13 && !hasSaveClass) {
       return false
+    }
+
+    if(!text) {
+      _toast('Please add some text')
+      return
     }
     
     if (!hasSaveClass) {
       store.setEditing(id)
     }
     
-    const text = $target.closest('.collection-item').find('input').val().trim()
-
-    if(!text) {
-      _toast('Please add some text')
-      return
-    }
-
     _updateApi({text}, id)
   }
 
@@ -90,7 +98,7 @@ const handlers = (() => {
     const done = $target.closest('.collection-item').find('.text').hasClass('completed') 
       ? '' 
       : 'completed'
-
+    console.log('triggering done render')
     _updateApi({done}, id)
   }
 
