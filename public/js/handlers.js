@@ -4,7 +4,7 @@ const handlers = (() => {
     e.preventDefault()
     
     const $target = $(e.currentTarget).find('#todo')
-    const todo = $target.val()
+    const todo = $target.val().trim()
     $target.val('')
     
     if(!todo) {
@@ -44,12 +44,11 @@ const handlers = (() => {
       .then(updatedTodo => {
         const originalTodo = store.findById(id)
         const textCheck = updatedTodo.text != originalTodo.text
-        const doneCheck = originalTodo.done !== updatedTodo.done
 
-        if (textCheck || doneCheck) {
+        if (textCheck) {
           Materialize.toast('Todo Updated', 1200, 'rounded')  
         }
-        
+
         store.updateInStore(updatedTodo)
         render()
       })
@@ -70,7 +69,13 @@ const handlers = (() => {
       store.setEditing(id)
     }
     
-    const text = $target.closest('.collection-item').find('input').val()
+    const text = $target.closest('.collection-item').find('input').val().trim()
+
+    if(!text) {
+      Materialize.toast('Please add some text', 1200, 'rounded')
+      return
+    }
+    
     _updateApi({text}, id)
   }
 
