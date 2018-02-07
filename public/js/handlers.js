@@ -1,7 +1,7 @@
 const handlers = (() => {
   
   const _toast = message => {
-    Materialize._toast(message, 1200, 'rounded')
+    Materialize.toast(message, 1200, 'rounded')
   }
 
   const addHandler = e => {
