@@ -5,7 +5,9 @@ const render = (() => {
       const { editing, text, done, id } = todo
 
       const todoText = editing 
-        ? `<form><input value='${text}' data-id='${id}'></form>`
+        ? `<form>
+             <input value='${text}' data-id='${id}'>
+           </form>`
         : `<div class='text ${done}'>${text}</div>`
 
       const editClass = editing ? `save` : 'edit'
