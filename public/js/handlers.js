@@ -56,10 +56,6 @@ const handlers = (() => {
       })
   }
 
-  const triggerFormHandler = e => {
-    $(e.currentTarget).find('.collection-item').closest('form').submit()
-  }
-
   const updateTextHandler = e => {
     e.preventDefault()
     const $target = $(e.currentTarget)
@@ -90,7 +86,6 @@ const handlers = (() => {
     addHandler,
     deleteHandler,
     editTextHandler,
-    triggerFormHandler,
     updateTextHandler,
     updateDoneHandler
   }

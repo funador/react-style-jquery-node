@@ -4,7 +4,6 @@ const attachListeners = (() => () => {
     $('.collection').on('click', '.save', handlers.updateTextHandler)
     $('.collection').on('submit', 'form', handlers.updateTextHandler)
     $('.collection').on('click', '.edit', handlers.editTextHandler)
-    $('.collection').on('click', '.save', handlers.triggerFormHandler)
     $('.collection').on('click', '.done', handlers.updateDoneHandler)
   }
 )()
