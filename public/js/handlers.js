@@ -7,15 +7,15 @@ const handlers = (() => {
   const addHandler = e => {
     e.preventDefault()
     const $target = $(e.currentTarget).find('#todo')
-    const todo = $target.val().trim()
+    const text = $target.val().trim()
     $target.val('')
 
-    if (!todo) {
+    if (!text) {
       _toast('Please add some text')
       return
     }
 
-    api.addTodo({text: todo})
+    api.addTodo({text})
       .then(newTodo => {
         _toast('Todo Added')
         store.addToStore(newTodo)
@@ -24,7 +24,6 @@ const handlers = (() => {
   }
 
   const deleteHandler = e => {
-    e.preventDefault()
     const id = $(e.currentTarget).closest('.collection-item').data('id')
 
     api.deleteTodo(id)
@@ -35,19 +34,13 @@ const handlers = (() => {
       })
   }
 
+  const triggerFormHandler = e => {
+    $(e.currentTarget).find('.collection').closest('form').submit()
+  }
+
   const editTextHandler = e => {
     e.preventDefault()
-    const $target = $(e.currentTarget)
-    const $item = $target.closest('.collection-item')
-    const id = $item.data('id')
-
-    if ($target.hasClass('save')) {
-      const text = $item.find('input').val()
-      if (!text) {
-        return 
-      }  
-    }
-    
+    const id = $(e.currentTarget).closest('.collection-item').data('id')
     store.setEditing(id)
     render.todos()
   }
@@ -71,28 +64,19 @@ const handlers = (() => {
     e.preventDefault()
     const $target = $(e.currentTarget)
     const $item = $target.closest('.collection-item')
-    const hasSaveClass = $target.hasClass('save')
     const id = $item.data('id')
     const text = $item.find('input').val().trim()
-
-    if (e.which != 13 && !hasSaveClass) {
-      return false
-    }
 
     if (!text) {
       _toast('Please add some text')
       return
     }
-    
-    if (!hasSaveClass) {
-      store.setEditing(id)
-    }
-    
+
+    store.setEditing(id)
     _updateApi({text}, id)
   }
 
   const updateDoneHandler = e => {
-    e.preventDefault()
     const $item = $(e.currentTarget).closest('.collection-item')
     const id = $item.data('id')
     const done = $item.find('.text').hasClass('completed') 
@@ -106,6 +90,7 @@ const handlers = (() => {
     addHandler,
     deleteHandler,
     editTextHandler,
+    triggerFormHandler,
     updateTextHandler,
     updateDoneHandler
   }

@@ -2,8 +2,9 @@ const attachListeners = (() => () => {
     $('#add-todo').submit(handlers.addHandler)
     $('.collection').on('click', '.delete', handlers.deleteHandler)
     $('.collection').on('click', '.save', handlers.updateTextHandler)
-    $('.collection').on('keyup', 'input', handlers.updateTextHandler)
-    $('.collection').on('click', '.edit, .save', handlers.editTextHandler)
+    $('.collection').on('submit', 'form', handlers.updateTextHandler)
+    $('.collection').on('click', '.edit', handlers.editTextHandler)
+    $('.collection').on('click', '.save', handlers.triggerFormHandler)
     $('.collection').on('click', '.done', handlers.updateDoneHandler)
   }
 )()

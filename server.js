@@ -28,6 +28,6 @@ app.get('*', (req, res) => {
 
 // connect the db and start the server
 mongoose.connect(process.env.DB_URL, () => {
-  app.listen(process.env.PORT || 8080, () => 'listening')  
+  app.listen(process.env.PORT || 8080, () => console.log('listening'))
 })
 
