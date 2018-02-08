@@ -34,10 +34,6 @@ const handlers = (() => {
       })
   }
 
-  const triggerFormHandler = e => {
-    $(e.currentTarget).find('.collection').closest('form').submit()
-  }
-
   const editTextHandler = e => {
     e.preventDefault()
     const id = $(e.currentTarget).closest('.collection-item').data('id')
@@ -58,6 +54,10 @@ const handlers = (() => {
         store.updateInStore(updatedTodo)
         render.todos()
       })
+  }
+
+  const triggerFormHandler = e => {
+    $(e.currentTarget).find('.collection-item').closest('form').submit()
   }
 
   const updateTextHandler = e => {
