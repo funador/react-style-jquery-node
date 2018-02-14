@@ -15,7 +15,7 @@ const handlers = (() => {
       return
     }
 
-    api.addTodo({text})
+    actions.addTodo({text})
       .then(newTodo => {
         _toast('Todo Added')
         store.addToStore(newTodo)
@@ -26,7 +26,7 @@ const handlers = (() => {
   const deleteHandler = e => {
     const id = $(e.currentTarget).closest('.collection-item').data('id')
 
-    api.deleteTodo(id)
+    actions.deleteTodo(id)
       .then(data => {
         _toast('Todo Deleted')
         store.deleteFromStore(data.id)
@@ -41,8 +41,8 @@ const handlers = (() => {
     render.todos()
   }
 
-  const _updateApi = (update, id) => {
-    api.updateTodo(update, id)
+  const _updateActions = (update, id) => {
+    actions.updateTodo(update, id)
       .then(updatedTodo => {
         const originalTodo = store.findById(id)
         const textCheck = updatedTodo.text != originalTodo.text
@@ -69,7 +69,7 @@ const handlers = (() => {
     }
 
     store.setEditing(id)
-    _updateApi({text}, id)
+    _updateActions({text}, id)
   }
 
   const updateDoneHandler = e => {
@@ -79,7 +79,7 @@ const handlers = (() => {
       ? '' 
       : 'completed'
 
-    _updateApi({done}, id)
+    _updateActions({done}, id)
   }
 
   return {

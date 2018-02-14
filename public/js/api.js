@@ -1,4 +1,4 @@
-const api = (() => {
+const actions = (() => {
   
   const url = window.location.origin + '/api'
 
