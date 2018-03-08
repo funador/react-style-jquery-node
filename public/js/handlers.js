@@ -15,18 +15,18 @@ const handlers = (() => {
       return
     }
 
-    actions.addTodo({text})
+    api.addTodo({text})
       .then(newTodo => {
-        _toast('Todo Added')
-        store.addToStore(newTodo)
-        render.todos()    
+        _toast('Todo Added') // Synchronous 
+        store.addToStore(newTodo) // Also Synchronous 
+        render.todos() // Synchronously render what is in the .store()
       })
   }
 
   const deleteHandler = e => {
     const id = $(e.currentTarget).closest('.collection-item').data('id')
 
-    actions.deleteTodo(id)
+    api.deleteTodo(id)
       .then(data => {
         _toast('Todo Deleted')
         store.deleteFromStore(data.id)
@@ -42,12 +42,12 @@ const handlers = (() => {
   }
 
   const _updateActions = (update, id) => {
-    actions.updateTodo(update, id)
+    api.updateTodo(update, id)
       .then(updatedTodo => {
-        const originalTodo = store.findById(id)
-        const textCheck = updatedTodo.text != originalTodo.text
+        const originalTodo = store.findById(id) 
+        const sameSame = updatedTodo.text != originalTodo.text
 
-        if (textCheck) {
+        if (!sameSame) {
           _toast('Todo Updated')  
         }
 
@@ -58,9 +58,7 @@ const handlers = (() => {
 
   const updateTextHandler = e => {
     e.preventDefault()
-    const $target = $(e.currentTarget)
-    const $item = $target.closest('.collection-item')
-    const id = $item.data('id')
+    
     const text = $item.find('input').val().trim()
 
     if (!text) {
@@ -68,7 +66,11 @@ const handlers = (() => {
       return
     }
 
-    store.setEditing(id)
+    const $target = $(e.currentTarget)
+    const $item = $target.closest('.collection-item')
+    const id = $item.data('id')
+  
+  store.setEditing(id)
     _updateActions({text}, id)
   }
 

@@ -47,10 +47,20 @@ const render = (() => {
               <form id='add-todo'>
                 <div class="row">
                   <div class="col s9">
-                    <input placeholder="Your Next Todo" id="todo" type="text" class="validate">
+                    <input 
+                      placeholder="Your Next Todo" 
+                      id="todo" 
+                      type="text" 
+                      class="validate"
+                    />
                   </div>
                   <div class="col s3 margin-top-7">
-                    <button class="waves-effect waves-light btn" type="submit">add</button>
+                    <button 
+                      class="waves-effect waves-light btn" 
+                      type="submit"
+                    >
+                      add<
+                    /button>
                   </div>
                 </div>
               </form>  
