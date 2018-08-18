@@ -1,4 +1,4 @@
-const Todo = require('../models/todo')
+const Todo = require('./todo.model')
 
 exports.addTodo = (req, res) => {
   Todo
@@ -28,6 +28,7 @@ exports.updateTodo = (req, res) => {
   Todo.
     findByIdAndUpdate(req.params.id, req.body, {new: true})
     .then(todo => {
+      console.log(todo)
       res.json(todo.serialize())    
     })
 }

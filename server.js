@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const path = require('path')
 const app = express()
 
-const todoRouter = require('./routes')
+const todoRouter = require('./todo.router')
 
 // set public folder
 app.use(express.static('public'))

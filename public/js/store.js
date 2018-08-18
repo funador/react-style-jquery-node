@@ -1,5 +1,4 @@
 const store = (() => {
-  let todos = []
   
   function addToStore(todo) {
     todo.editing = false
@@ -20,7 +19,7 @@ const store = (() => {
   }
 
   function findById(id) {
-    return this.todos.find(todo => todo.id == id)
+    return this.todos.find(todo => todo.id === id)
   }
 
   function updateInStore(updated) {
@@ -28,8 +27,8 @@ const store = (() => {
                     todo.id == updated.id 
                       ? Object.assign({}, todo, updated)
                       : todo
-                  )
-  }
+                 )
+  } 
 
   function addTodosOnLoad(todos) {
     this.todos = todos.reverse().map(todo => {
@@ -39,7 +38,7 @@ const store = (() => {
   }
 
   return {
-    todos,
+    todos: [],
     addToStore,
     deleteFromStore,
     setEditing,

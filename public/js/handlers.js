@@ -4,29 +4,33 @@ const handlers = (() => {
     Materialize.toast(message, 1500, 'rounded')
   }
 
+  const _getId = e => {
+    return e.target.closest('.collection-item').getAttribute('data-id')
+  }
+
   const addHandler = e => {
     e.preventDefault()
-    const $target = $(e.currentTarget).find('#todo')
-    const text = $target.val().trim()
-    $target.val('')
+    const $target = e.target.querySelector('#todo')
+    const text = $target.value.trim()
+    $target.value = ''
 
     if (!text) {
       _toast('Please add some text')
       return
     }
 
-    api.addTodo({text})
+    $.ajax('post', {text})
       .then(newTodo => {
-        _toast('Todo Added') // Synchronous 
-        store.addToStore(newTodo) // Also Synchronous 
-        render.todos() // Synchronously render what is in the .store()
+        _toast('Todo Added') 
+        store.addToStore(newTodo)
+        render.todos() 
       })
   }
 
   const deleteHandler = e => {
-    const id = $(e.currentTarget).closest('.collection-item').data('id')
+    const id = _getId(e)
 
-    api.deleteTodo(id)
+    $.ajax('delete', null, id)
       .then(data => {
         _toast('Todo Deleted')
         store.deleteFromStore(data.id)
@@ -36,13 +40,13 @@ const handlers = (() => {
 
   const editTextHandler = e => {
     e.preventDefault()
-    const id = $(e.currentTarget).closest('.collection-item').data('id')
+    const id = _getId(e)
     store.setEditing(id)
     render.todos()
   }
 
-  const _updateActions = (update, id) => {
-    api.updateTodo(update, id)
+  const _updateActions = (body, id) => {
+    $.ajax('put', body, id)
       .then(updatedTodo => {
         const originalTodo = store.findById(id) 
         const sameSame = updatedTodo.text != originalTodo.text
@@ -58,26 +62,25 @@ const handlers = (() => {
 
   const updateTextHandler = e => {
     e.preventDefault()
-    
-    const text = $item.find('input').val().trim()
+    const item = e.target.closest('.collection-item')
+    const id = _getId(e)
+
+    const text = item.querySelector('input').value.trim()
 
     if (!text) {
       _toast('Please add some text')
       return
     }
-
-    const $target = $(e.currentTarget)
-    const $item = $target.closest('.collection-item')
-    const id = $item.data('id')
   
-  store.setEditing(id)
+    store.setEditing(id)
     _updateActions({text}, id)
   }
 
   const updateDoneHandler = e => {
-    const $item = $(e.currentTarget).closest('.collection-item')
-    const id = $item.data('id')
-    const done = $item.find('.text').hasClass('completed') 
+    const $item = e.target.closest('.collection-item')
+    const id = _getId(e)
+
+    const done = $item.querySelector('.text').classList.contains('completed') 
       ? '' 
       : 'completed'
 

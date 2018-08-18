@@ -1,7 +1,8 @@
 const render = (() => {
   
   const todos = () => {
-    $('.collection').html(store.todos.map(todo => {
+    // console.log($$('collection'))
+    $('collection').innerHTML = store.todos.map(todo => {
       const { editing, text, done, id } = todo
 
       const todoText = editing 
@@ -34,17 +35,17 @@ const render = (() => {
                   </div>
                 </div>
               </li>`
-    }))
+    }).join('')
   }
 
   const dom = () => {
-    $('#app').html(
-      `<div class="container z-depth-1">
+    $('#app').innerHTML = `
+      <div class="container z-depth-1">
         <div class='row'>
           <div class="col s8 offset-s2">
             <h1>Todos</h1>
             <main>
-              <form id='add-todo'>
+              <form class='add-todo'>
                 <div class="row">
                   <div class="col s9">
                     <input 
@@ -59,8 +60,8 @@ const render = (() => {
                       class="waves-effect waves-light btn" 
                       type="submit"
                     >
-                      add<
-                    /button>
+                      add
+                    </button>
                   </div>
                 </div>
               </form>  
@@ -70,7 +71,6 @@ const render = (() => {
           </div>
         </div>
       </div>`
-    )
   }
 
   return {

@@ -1,10 +1,11 @@
-$(() => {
+document.addEventListener('DOMContentLoaded', () => { 
   render.dom()
   attachListeners()
 
-  api.getTodos()
+  $.ajax('get')
     .then(todos => {  
       store.addTodosOnLoad(todos)
       render.todos()
     })
-})
+
+}, false)
