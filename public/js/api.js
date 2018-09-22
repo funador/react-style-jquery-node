@@ -1,6 +1,6 @@
-const actions = (() => {
+const api = (() => {
   
-  const url = window.location.origin + '/api'
+  const url = `${window.location.origin}/api`
 
   const addTodo = todo => 
     axios.post(url, todo)

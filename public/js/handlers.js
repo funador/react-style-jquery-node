@@ -17,9 +17,9 @@ const handlers = (() => {
 
     api.addTodo({text})
       .then(newTodo => {
-        _toast('Todo Added') // Synchronous 
-        store.addToStore(newTodo) // Also Synchronous 
-        render.todos() // Synchronously render what is in the .store()
+        _toast('Todo Added') 
+        store.addToStore(newTodo) 
+        render.todos() 
       })
   }
 
@@ -58,19 +58,17 @@ const handlers = (() => {
 
   const updateTextHandler = e => {
     e.preventDefault()
-    
+    const $target = $(e.currentTarget)
+    const $item = $target.closest('.collection-item')
     const text = $item.find('input').val().trim()
+    const id = $item.data('id')
 
     if (!text) {
       _toast('Please add some text')
       return
     }
-
-    const $target = $(e.currentTarget)
-    const $item = $target.closest('.collection-item')
-    const id = $item.data('id')
-  
-  store.setEditing(id)
+    
+    store.setEditing(id) 
     _updateActions({text}, id)
   }
 
