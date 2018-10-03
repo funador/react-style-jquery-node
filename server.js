@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const path = require('path')
 const app = express()
 
-const todoRouter = require('./todo.router')
+const todoRouter = require('./todo/router')
 
 // set public folder
 app.use(express.static('public'))
@@ -15,7 +15,7 @@ app.use(express.json())
 // route all calls to /api to todoRouter
 app.use('/api', todoRouter)
 
-// catch everything that doesn't go to the api
+// catch everything that doesn't go to the api and direct it to index.html
 app.use('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'))
 })
