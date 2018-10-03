@@ -15,8 +15,8 @@ app.use(express.json())
 // route all calls to /api to todoRouter
 app.use('/api', todoRouter)
 
-// catch everything that doesn't go to the api and direct it to index.html
-app.use('*', (req, res) => {
+// serve up our index.html page
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'))
 })
 

@@ -11,8 +11,7 @@ const handlers = (() => {
     $target.val('')
 
     if (!text) {
-      _toast('Please add some text')
-      return
+      return _toast('Please add some text')
     }
 
     api.addTodo({text})
@@ -41,13 +40,13 @@ const handlers = (() => {
     render.todos()
   }
 
-  const _updateActions = (update, id) => {
+  const _updateApi = (update, id) => {
     api.updateTodo(update, id)
       .then(updatedTodo => {
-        const originalTodo = store.findById(id) 
-        const sameSame = updatedTodo.text != originalTodo.text
+        const originalTodo = store.findById(id)
+        const sameSame = updatedTodo.text === originalTodo.text
 
-        if (!sameSame) {
+        if (!sameSame) { 
           _toast('Todo Updated')  
         }
 
@@ -64,12 +63,11 @@ const handlers = (() => {
     const id = $item.data('id')
 
     if (!text) {
-      _toast('Please add some text')
-      return
+      return _toast('Please add some text')
     }
     
     store.setEditing(id) 
-    _updateActions({text}, id)
+    _updateApi({text}, id)
   }
 
   const updateDoneHandler = e => {
@@ -79,7 +77,7 @@ const handlers = (() => {
       ? '' 
       : 'completed'
 
-    _updateActions({done}, id)
+    _updateApi({done}, id)
   }
 
   return {

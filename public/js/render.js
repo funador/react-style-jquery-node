@@ -45,7 +45,7 @@ const render = (() => {
           <div class="col s8 offset-s2">
             <h1>Todos</h1>
             <main>
-              <form id='add-todo'>
+              <form id='add-todo' autocomplete="off">
                 <div class="row">
                   <div class="col s9">
                     <input 
